@@ -24,12 +24,26 @@
     <section>
         <h1>Books</h1>
         <div class="filter-panel">
+            <h3>Filter Results</h3>
             <label for="sort">Sort by:</label>
             <select id="sort">
                 <option value="price">Price</option>
                 <option value="popularity">Popularity</option>
                 <option value="new-releases">New Releases</option>
             </select>
+            <h4>Genres</h4>
+            <label><input type="checkbox" name="genre" value="fiction"> Fiction</label><br>
+            <label><input type="checkbox" name="genre" value="non-fiction"> Non-Fiction</label><br>
+            <label><input type="checkbox" name="genre" value="mystery"> Mystery</label><br>
+            <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label><br>
+            <label><input type="checkbox" name="genre" value="romance"> Romance</label><br>
+            <label><input type="checkbox" name="genre" value="science-fiction"> Science Fiction</label><br>
+            <h4>Price Range</h4>
+            <label for="min-price">Min Price:</label>
+            <input type="number" id="min-price" name="min-price" placeholder="0"><br>
+            <label for="max-price">Max Price:</label>
+            <input type="number" id="max-price" name="max-price" placeholder="100">
+            <button onclick="applyFilters()">Apply Filters</button>
         </div>
         <div class="book-display">
             <div class="book">
@@ -53,5 +67,12 @@
     <footer>
         <p>&copy; 2024 Rainbow Books</p>
     </footer>
+
+    <script>
+        function applyFilters() {
+            // This is where you would implement your filtering logic
+            alert("Filters applied! This is just a placeholder function.");
+        }
+    </script>
 </body>
 </html>
