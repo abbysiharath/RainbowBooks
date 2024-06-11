@@ -101,6 +101,64 @@ footer {
     cursor: pointer;
     border-radius: 5px;
 }
+
+.add-to-cart:hover {
+    background-color: #45a049;
+}
+
+.filter-panel {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-panel h3, .filter-panel h4 {
+    margin-top: 0;
+}
+
+.filter-panel label {
+    display: block;
+    margin: 5px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 .cart {
     border-collapse: collapse;
     width: 100%;
