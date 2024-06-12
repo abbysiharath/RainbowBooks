@@ -55,14 +55,14 @@
                 <p class="book-title">Book Title 1</p>
                 <p class="book-author">Author 1</p>
                 <p class="book-price">$10.00</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart" onclick="addToCart('book1', 'Book Title 1', 10.00, 'book1.jpg')">Add to Cart</button>
             </div>
             <div class="book" onclick="openModal('book2')">
                 <img src="book2.jpg" alt="Book 2">
                 <p class="book-title">Book Title 2</p>
                 <p class="book-author">Author 2</p>
                 <p class="book-price">$15.00</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart" onclick="addToCart('book2', 'Book Title 2', 15.00, 'book2.jpg')">Add to Cart</button>
             </div>
             <!-- Add more book elements as needed -->
         </div>
@@ -177,18 +177,20 @@
         }
 
         function addToCart(id, title, price, cover) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingItem = cart.find(item => item.id === id);
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === id);
 
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, title, price, cover, quantity: 1 });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert("Added to cart: " + title);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ id, title, price, cover, quantity: 1 });
         }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        // Display confirmation message
+        alert("Added to cart: " + title);
+        // You can also use other methods like modals to display the confirmation
+    }
     </script>
 </body>
 </html>
