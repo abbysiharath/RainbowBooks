@@ -24,7 +24,7 @@
 
     <section>
         <h1>Checkout</h1>
-        <form action="order_confirmation.html" method="post">
+        <form id="checkout-form">
             <h2>Shipping Address</h2>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -58,13 +58,18 @@
     <footer>
         <p>&copy; 2024 Rainbow Books</p>
     </footer>
+
     <script>
-        
         function performSearch() {
             const query = document.getElementById('search-bar').value;
             // This is where you would implement your search logic
             alert("Search performed for: " + query + ". This is just a placeholder function.");
         }
+
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'order_confirmation.html';
+        });
     </script>
 </body>
 </html>
