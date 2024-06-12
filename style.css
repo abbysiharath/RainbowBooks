@@ -49,7 +49,7 @@ input[type=text] {
     padding: 10px;
     margin-top: 8px;
     font-size: 17px;
-    border: none;
+    border: 1px solid #ccc;
 }
 
 .cart-icon {
@@ -102,6 +102,8 @@ input[type=text] {
 .checkout-form input {
     width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 .checkout-form button {
@@ -293,6 +295,7 @@ form input, form textarea {
     margin-top: 5px;
     width: 100%;
     box-sizing: border-box;
+    border: 1px solid #ccc;
 }
 
 form button {
