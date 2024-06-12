@@ -31,18 +31,18 @@
         <h2>Featured Books</h2>
         <div class="book-display">
             <div class="book" onclick="openModal('book1')">
-                <img src="book1.jpg" alt="Book 1">
-                <p class="book-title">Book Title 1</p>
-                <p class="book-author">Author 1</p>
+                <img src="book1.jpg" alt="Harry Potter and the Cursed Child">
+                <p class="book-title">Harry Potter and the Cursed Child</p>
+                <p class="book-author">J. K. Rowling</p>
                 <p class="book-price">$10.00</p>
-                <button class="add-to-cart" onclick="addToCart('book1', 'Book Title 1', 10.00, 'book1.jpg')">Add to Cart</button>
+                <button class="add-to-cart" onclick="addToCart('book1', 'Harry Potter and the Cursed Child', 10.00, 'book1.jpg')">Add to Cart</button>
             </div>
             <div class="book" onclick="openModal('book2')">
-                <img src="book2.jpg" alt="Book 2">
+                <img src="book2.jpg" alt="The Great Gatsby">
                 <p class="book-title">Book Title 2</p>
                 <p class="book-author">Author 2</p>
                 <p class="book-price">$15.00</p>
-                <button class="add-to-cart" onclick="addToCart('book2', 'Book Title 2', 15.00, 'book2.jpg')">Add to Cart</button>
+                <button class="add-to-cart" onclick="addToCart('book2', 'The Great Gatsby', 15.00, 'book2.jpg')">Add to Cart</button>
             </div>
             <!-- Add more book elements as needed -->
         </div>
@@ -75,24 +75,24 @@
             // Placeholder data for book details
             const bookDetails = {
                 book1: {
-                    title: "Book Title 1",
+                    title: "Harry Potter and the Cursed Child",
                     cover: "book1.jpg",
-                    description: "This is a summary of Book 1.",
-                    author: "Author 1",
-                    authorBio: "Author 1 is a well-known writer of fiction.",
+                    description: "“Harry Potter and the Cursed Child” is about the journey Albus takes while growing up, and the roles he and his best friend, Scorpius (Draco Malfoy's son), play when dark forces, perhaps in league with Voldemort, once again threaten the fate of the planet.",
+                    author: "J. K. Rowling",
+                    authorBio: "Joanne Rowling CH OBE FRSL, known by her pen name J. K. Rowling, is a British author and philanthropist. She wrote Harry Potter, a seven-volume fantasy series published from 1997 to 2007.",
                     reviews: "★★★★☆",
                     comments: ["Great book!", "Loved it!"],
-                    relatedBooks: ["Book Title 2", "Book Title 3"]
+                    relatedBooks: ["Book Title 6", "Book Title 7"]
                 },
                 book2: {
-                    title: "Book Title 2",
+                    title: "The Great Gatsby",
                     cover: "book2.jpg",
-                    description: "This is a summary of Book 2.",
-                    author: "Author 2",
-                    authorBio: "Author 2 is a renowned author in mystery genre.",
+                    description: "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.",
+                    author: "F. Scott Fitzgerald",
+                    authorBio: "Francis Scott Key Fitzgerald was an American novelist, essayist, and short story writer. He is best known for his novels depicting the flamboyance and excess of the Jazz Age—a term he popularized in his short story collection Tales of the Jazz Age.",
                     reviews: "★★★☆☆",
                     comments: ["Interesting read.", "Good but could be better."],
-                    relatedBooks: ["Book Title 1", "Book Title 4"]
+                    relatedBooks: ["Book Title 4", "Book Title 5"]
                 }
             };
 
