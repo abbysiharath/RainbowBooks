@@ -15,6 +15,11 @@
             <a href="authors.html">Authors</a>
             <a href="contact.html">Contact</a>
             <a href="cart.html">Cart</a>
+
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
+                <button onclick="performSearch()">Search</button>
+            </div>
         </nav>
     </header>
 
@@ -102,6 +107,13 @@
     
         // Initial cart update
         updateCart();
+
+        
+        function performSearch() {
+            const query = document.getElementById('search-bar').value;
+            // This is where you would implement your search logic
+            alert("Search performed for: " + query + ". This is just a placeholder function.");
+        }
     </script>
     
 </body>
