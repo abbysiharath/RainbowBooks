@@ -14,48 +14,45 @@
             <a href="books.html">Books</a>
             <a href="authors.html">Authors</a>
             <a href="contact.html">Contact</a>
-            <div class="search-container">
-                <input type="text" placeholder="Search...">
-                <span class="cart-icon">🛒<span class="cart-items">0</span></span>
-            </div>
+            <a href="cart.html">Cart</a>
         </nav>
     </header>
 
     <section>
         <h1>Checkout</h1>
-        <form>
-            <h3>Shipping Address</h3>
+        <form action="order_confirmation.html" method="post">
+            <h2>Shipping Address</h2>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="address">Address:</label>
             <input type="text" id="address" name="address" required>
             <label for="city">City:</label>
             <input type="text" id="city" name="city" required>
-            <label for="zip">ZIP Code:</label>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+            <label for="zip">Zip Code:</label>
             <input type="text" id="zip" name="zip" required>
-            
-            <h3>Payment Information</h3>
+
+            <h2>Payment Options</h2>
             <label for="card-number">Card Number:</label>
             <input type="text" id="card-number" name="card-number" required>
-            <label for="exp-date">Expiration Date:</label>
-            <input type="text" id="exp-date" name="exp-date" placeholder="MM/YY" required>
+            <label for="expiration">Expiration Date:</label>
+            <input type="text" id="expiration" name="expiration" required>
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" name="cvv" required>
 
-            <button type="submit" onclick="placeOrder()">Place Order</button>
+            <h2>Order Summary</h2>
+            <p>Subtotal: $10.00</p>
+            <p>Taxes: $0.80</p>
+            <p>Shipping: $5.00</p>
+            <p>Total: $15.80</p>
+
+            <button type="submit" class="place-order-btn">Place Order</button>
         </form>
     </section>
 
     <footer>
         <p>&copy; 2024 Rainbow Books</p>
     </footer>
-
-    <script>
-        function placeOrder() {
-            // Placeholder function for placing an order
-            alert("Order placed successfully!");
-            window.location.href = 'order-confirmation.html';
-        }
-    </script>
 </body>
 </html>

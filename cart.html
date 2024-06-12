@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Rainbow Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Rainbow Books</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="books.html">Books</a>
+            <a href="authors.html">Authors</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+
+    <section>
+        <h1>Shopping Cart</h1>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically populated here -->
+            <div class="cart-item">
+                <img src="book1.jpg" alt="Book 1">
+                <p class="book-title">Book Title 1</p>
+                <p class="book-price">$10.00</p>
+                <input type="number" value="1" min="1">
+                <button class="remove-from-cart">Remove</button>
+            </div>
+        </div>
+        <div class="order-summary">
+            <p>Subtotal: $10.00</p>
+            <p>Taxes: $0.80</p>
+            <p>Shipping: $5.00</p>
+            <p>Total: $15.80</p>
+            <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Rainbow Books</p>
+    </footer>
+
+    <script>
+        // Example cart items
+        let cart = [
+            { id: 'book1', title: 'Book Title 1', price: 10.00, quantity: 1, cover: 'book1.jpg' }
+            // Add more items as needed
+        ];
+    
+        function updateCart() {
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const orderSummary = document.querySelector('.order-summary');
+    
+            // Clear the cart items container
+            cartItemsContainer.innerHTML = '';
+    
+            // Calculate totals
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.cover}" alt="${item.title}">
+                    <p class="book-title">${item.title}</p>
+                    <p class="book-price">$${item.price.toFixed(2)}</p>
+                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', this.value)">
+                    <button class="remove-from-cart" onclick="removeFromCart('${item.id}')">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+    
+            const taxes = subtotal * 0.08;
+            const shipping = 5.00;
+            const total = subtotal + taxes + shipping;
+    
+            // Update the order summary
+            orderSummary.innerHTML = `
+                <p>Subtotal: $${subtotal.toFixed(2)}</p>
+                <p>Taxes: $${taxes.toFixed(2)}</p>
+                <p>Shipping: $${shipping.toFixed(2)}</p>
+                <p>Total: $${total.toFixed(2)}</p>
+                <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+            `;
+        }
+    
+        function updateQuantity(id, quantity) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity = parseInt(quantity);
+                updateCart();
+            }
+        }
+    
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+    
+        // Initial cart update
+        updateCart();
+    </script>
+    
+</body>
+</html>
