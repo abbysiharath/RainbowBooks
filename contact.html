@@ -16,9 +16,10 @@
             <a href="contact.html">Contact</a>
             <a href="cart.html">Cart</a>
 
+
             <div class="search-container">
-                <input type="text" placeholder="Search...">
-                <span class="cart-icon">🛒<span class="cart-items">0</span></span>
+                <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
+                <button onclick="performSearch()">Search</button>
             </div>
         </nav>
     </header>
@@ -39,5 +40,13 @@
     <footer>
         <p>&copy; 2024 Rainbow Books</p>
     </footer>
+    <script>
+        
+        function performSearch() {
+            const query = document.getElementById('search-bar').value;
+            // This is where you would implement your search logic
+            alert("Search performed for: " + query + ". This is just a placeholder function.");
+        }
+    </script>
 </body>
 </html>

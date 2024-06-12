@@ -19,7 +19,6 @@
             <div class="search-container">
                 <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
                 <button onclick="performSearch()">Search</button>
-                <span class="cart-icon" onclick="toggleCart()">🛒<span class="cart-items">0</span></span>
             </div>
         </nav>
     </header>
@@ -163,11 +162,6 @@
         function closeModal() {
             const modal = document.getElementById('modal');
             modal.style.display = "none";
-        }
-
-        function toggleCart() {
-            const cart = document.getElementById('cart');
-            cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
         }
 
         // Close the modal when clicking outside of it
