@@ -30,14 +30,14 @@
         <p>Discover a world of knowledge, imagination, and entertainment with our wide selection of books. Whether you're looking for the latest bestseller, a classic novel, or a children's storybook, we have something for every reader.</p>
         <h2>Featured Books</h2>
         <div class="book-display">
-            <div class="book">
+            <div class="book" onclick="openModal('book1')">
                 <img src="book1.jpg" alt="Book 1">
                 <p class="book-title">Book Title 1</p>
                 <p class="book-author">Author 1</p>
                 <p class="book-price">$10.00</p>
                 <button class="add-to-cart" onclick="addToCart('book1', 'Book Title 1', 10.00, 'book1.jpg')">Add to Cart</button>
             </div>
-            <div class="book">
+            <div class="book" onclick="openModal('book2')">
                 <img src="book2.jpg" alt="Book 2">
                 <p class="book-title">Book Title 2</p>
                 <p class="book-author">Author 2</p>
@@ -52,29 +52,101 @@
         <p>&copy; 2024 Rainbow Books</p>
     </footer>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-details"></div>
+        </div>
+    </div>
+
     <script>
-        
         function performSearch() {
             const query = document.getElementById('search-bar').value;
             // This is where you would implement your search logic
             alert("Search performed for: " + query + ". This is just a placeholder function.");
         }
-        
-        function addToCart(id, title, price, cover) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingItem = cart.find(item => item.id === id);
 
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ id, title, price, cover, quantity: 1 });
+        function openModal(bookId) {
+            const modal = document.getElementById('modal');
+            const modalDetails = document.getElementById('modal-details');
+            
+            // Placeholder data for book details
+            const bookDetails = {
+                book1: {
+                    title: "Book Title 1",
+                    cover: "book1.jpg",
+                    description: "This is a summary of Book 1.",
+                    author: "Author 1",
+                    authorBio: "Author 1 is a well-known writer of fiction.",
+                    reviews: "★★★★☆",
+                    comments: ["Great book!", "Loved it!"],
+                    relatedBooks: ["Book Title 2", "Book Title 3"]
+                },
+                book2: {
+                    title: "Book Title 2",
+                    cover: "book2.jpg",
+                    description: "This is a summary of Book 2.",
+                    author: "Author 2",
+                    authorBio: "Author 2 is a renowned author in mystery genre.",
+                    reviews: "★★★☆☆",
+                    comments: ["Interesting read.", "Good but could be better."],
+                    relatedBooks: ["Book Title 1", "Book Title 4"]
+                }
+            };
+
+            const book = bookDetails[bookId];
+
+            modalDetails.innerHTML = `
+                <img src="${book.cover}" alt="${book.title}">
+                <h2>${book.title}</h2>
+                <p><strong>Author:</strong> ${book.author}</p>
+                <p>${book.description}</p>
+                <p><strong>Author Bio:</strong> ${book.authorBio}</p>
+                <p><strong>Reviews:</strong> ${book.reviews}</p>
+                <p><strong>Customer Comments:</strong></p>
+                <ul>
+                    ${book.comments.map(comment => `<li>${comment}</li>`).join('')}
+                </ul>
+                <button class="add-to-cart">Add to Cart</button>
+                <h3>Related Books</h3>
+                <ul>
+                    ${book.relatedBooks.map(title => `<li>${title}</li>`).join('')}
+                </ul>
+            `;
+
+            modal.style.display = "block";
         }
 
-        localStorage.setItem('cart', JSON.stringify(cart));
-        // Display confirmation message
-        alert("Added to cart: " + title);
-        // You can also use other methods like modals to display the confirmation
-    }
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = "none";
+        }
+
+                // Close the modal when clicking outside of it
+                window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function addToCart(id, title, price, cover) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, title, price, cover, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Display confirmation message
+            alert("Added to cart: " + title);
+            // You can also use other methods like modals to display the confirmation
+        }
     </script>
 </body>
 </html>
