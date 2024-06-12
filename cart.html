@@ -116,6 +116,62 @@
             // This is where you would implement your search logic
             alert("Search performed for: " + query + ". This is just a placeholder function.");
         }
+
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const orderSummary = document.querySelector('.order-summary');
+
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.cover}" alt="${item.title}">
+                    <p class="book-title">${item.title}</p>
+                    <p class="book-price">$${item.price.toFixed(2)}</p>
+                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', this.value)">
+                    <button class="remove-from-cart" onclick="removeFromCart('${item.id}')">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            const taxes = subtotal * 0.08;
+            const shipping = 5.00;
+            const total = subtotal + taxes + shipping;
+
+            orderSummary.innerHTML = `
+                <p>Subtotal: $${subtotal.toFixed(2)}</p>
+                <p>Taxes: $${taxes.toFixed(2)}</p>
+                <p>Shipping: $${shipping.toFixed(2)}</p>
+                <p>Total: $${total.toFixed(2)}</p>
+                <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+            `;
+        }
+
+        function updateQuantity(id, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(item => item.id === id);
+
+            if (item) {
+                item.quantity = parseInt(quantity);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+            }
+        }
+
+        function removeFromCart(id) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Load cart items on page load
+        window.onload = loadCart;
     </script>
 
 </div>

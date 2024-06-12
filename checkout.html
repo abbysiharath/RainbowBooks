@@ -47,10 +47,12 @@
             <input type="text" id="cvv" name="cvv" required>
 
             <h2>Order Summary</h2>
-            <p>Subtotal: $10.00</p>
-            <p>Taxes: $0.80</p>
-            <p>Shipping: $5.00</p>
-            <p>Total: $15.80</p>
+            <div id="order-summary">
+                <p>Subtotal: $0.00</p>
+                <p>Taxes: $0.00</p>
+                <p>Shipping: $5.00</p>
+                <p>Total: $5.00</p>
+            </div>
 
             <button type="submit" class="place-order-btn">Place Order</button>
         </form>
@@ -69,10 +71,35 @@
             alert("Search performed for: " + query + ". This is just a placeholder function.");
         }
 
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            const taxes = subtotal * 0.08;
+            const shipping = 5.00;
+            const total = subtotal + taxes + shipping;
+
+            document.getElementById('order-summary').innerHTML = `
+                <p>Subtotal: $${subtotal.toFixed(2)}</p>
+                <p>Taxes: $${taxes.toFixed(2)}</p>
+                <p>Shipping: $${shipping.toFixed(2)}</p>
+                <p>Total: $${total.toFixed(2)}</p>
+            `;
+        }
+
         document.getElementById('checkout-form').addEventListener('submit', function(event) {
             event.preventDefault();
+            alert('Order placed successfully!');
+            localStorage.removeItem('cart');  // Clear the cart after placing the order
             window.location.href = 'order-confirmation.html';
         });
+
+        // Load order summary on page load
+        window.onload = loadOrderSummary;
     </script>
 </body>
 </html>
