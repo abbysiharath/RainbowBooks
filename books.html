@@ -16,178 +16,147 @@
             height: auto;
             margin-right: 10px; /* Adjust margin as needed */
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="Logo" class="logo-icon">
-            </a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="books.html">Books</a>
-                <a href="authors.html">Authors</a>
-                <a href="contact.html">Contact</a>
-                <a href="cart.html">Cart</a>
+<div class="wrapper">
+    <header>
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Logo" class="logo-icon">
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="books.html">Books</a>
+            <a href="authors.html">Authors</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart</a>
 
-                <div class="search-container">
-                    <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
-                    <button onclick="performSearch()">Search</button>
-                </div>
-            </nav>
-        </header>
-
-        <section>
-            <h1>Books</h1>
-            <div class="filter-panel">
-                <h3>Filter Results</h3>
-                <label for="sort">Sort by:</label>
-                <select id="sort">
-                    <option value="price">Price</option>
-                    <option value="popularity">Popularity</option>
-                    <option value="new-releases">New Releases</option>
-                </select>
-                <h4>Genres</h4>
-                <label><input type="checkbox" name="genre" value="fiction"> Fiction</label><br>
-                <label><input type="checkbox" name="genre" value="non-fiction"> Non-Fiction</label><br>
-                <label><input type="checkbox" name="genre" value="mystery"> Mystery</label><br>
-                <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label><br>
-                <label><input type="checkbox" name="genre" value="romance"> Romance</label><br>
-                <label><input type="checkbox" name="genre" value="science-fiction"> Science Fiction</label><br>
-                <h4>Price Range</h4>
-                <label for="min-price">Min Price:</label>
-                <input type="number" id="min-price" name="min-price" placeholder="0"><br>
-                <label for="max-price">Max Price:</label>
-                <input type="number" id="max-price" name="max-price" placeholder="100">
-                <button onclick="applyFilters()">Apply Filters</button>
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
+                <button onclick="performSearch()">Search</button>
             </div>
-            <div class="book-display">
-                <div class="book" onclick="openModal('book1')">
-                    <img src="book1.jpg" alt="Harry Potter and the Cursed Child">
-                    <p class="book-title">Harry Potter and the Cursed Child</p>
-                    <p class="book-author">J. K. Rowling</p>
-                    <p class="book-price">$10.00</p>
-                    <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('book1', 'Harry Potter and the Cursed Child', 10.00, 'book1.jpg')">Add to Cart</button>
-                </div>
-                <div class="book" onclick="openModal('book2')">
-                    <img src="book2.jpg" alt="The Great Gatsby">
-                    <p class="book-title">The Great Gatsby</p>
-                    <p class="book-author">F. Scott Fitzgerald</p>
-                    <p class="book-price">$15.00</p>
-                    <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('book2', 'The Great Gatsby', 15.00, 'book2.jpg')">Add to Cart</button>
-                </div>
-                <!-- Add more book elements as needed -->
-            </div>
-        </section>
+        </nav>
+    </header>
 
-        <footer>
-            <p>&copy; 2024 Rainbow Books</p>
-        </footer>
-    </div>
-
-    <!-- Modal Structure -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modal-details"></div>
+    <section>
+        <h1>Books</h1>
+        <div class="filter-panel">
+            <h3>Filter Results</h3>
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="price">Price</option>
+                <option value="popularity">Popularity</option>
+                <option value="new-releases">New Releases</option>
+            </select>
+            <h4>Genres</h4>
+            <label><input type="checkbox" name="genre" value="fiction"> Fiction</label><br>
+            <label><input type="checkbox" name="genre" value="non-fiction"> Non-Fiction</label><br>
+            <label><input type="checkbox" name="genre" value="mystery"> Mystery</label><br>
+            <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label><br>
+            <label><input type="checkbox" name="genre" value="romance"> Romance</label><br>
+            <label><input type="checkbox" name="genre" value="science-fiction"> Science Fiction</label><br>
+            <h4>Price Range</h4>
+            <label for="min-price">Min Price:</label>
+            <input type="number" id="min-price" name="min-price" placeholder="0"><br>
+            <label for="max-price">Max Price:</label>
+            <input type="number" id="max-price" name="max-price" placeholder="100">
+            <button onclick="applyFilters()">Apply Filters</button>
         </div>
+        <div class="book-display">
+            <div class="book" onclick="openModal('book1')">
+                <img src="book1.jpg" alt="Harry Potter and the Cursed Child">
+                <p class="book-title">Harry Potter and the Cursed Child</p>
+                <p class="book-author">J. K. Rowling</p>
+                <p class="book-price">$10.00</p>
+                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('book1', 'Harry Potter and the Cursed Child', 10.00, 'book1.jpg')">Add to Cart</button>
+            </div>
+            <div class="book" onclick="openModal('book2')">
+                <img src="book2.jpg" alt="The Great Gatsby">
+                <p class="book-title">The Great Gatsby</p>
+                <p class="book-author">F. Scott Fitzgerald</p>
+                <p class="book-price">$15.00</p>
+                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('book2', 'The Great Gatsby', 15.00, 'book2.jpg')">Add to Cart</button>
+            </div>
+            <!-- Add more book elements as needed -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Rainbow Books</p>
+    </footer>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-details"></div>
     </div>
+</div>
 
-    <script>
-        function applyFilters() {
-            // This is where you would implement your filtering logic
-            alert("Filters applied! This is just a placeholder function.");
-        }
+<script>
+    function applyFilters() {
+        // This is where you would implement your filtering logic
+        alert("Filters applied! This is just a placeholder function.");
+    }
 
-        function performSearch() {
-            const query = document.getElementById('search-bar').value;
-            // This is where you would implement your search logic
-            alert("Search performed for: " + query + ". This is just a placeholder function.");
-        }
+    function performSearch() {
+        const query = document.getElementById('search-bar').value;
+        // This is where you would implement your search logic
+        alert("Search performed for: " + query + ". This is just a placeholder function.");
+    }
 
-        function openModal(bookId) {
-            const modal = document.getElementById('modal');
-            const modalDetails = document.getElementById('modal-details');
-            
-            // Placeholder data for book details
-            const bookDetails = {
-                book1: {
-                    title: "Harry Potter and the Cursed Child",
-                    cover: "book1.jpg",
-                    description: "“Harry Potter and the Cursed Child” is about the journey Albus takes while growing up, and the roles he and his best friend, Scorpius (Draco Malfoy's son), play when dark forces, perhaps in league with Voldemort, once again threaten the fate of the planet.",
-                    author: "J. K. Rowling",
-                    authorBio: "Joanne Rowling CH OBE FRSL, known by her pen name J. K. Rowling, is a British author and philanthropist. She wrote Harry Potter, a seven-volume fantasy series published from 1997 to 2007.",
-                    reviews: "★★★★☆",
-                    comments: ["Great book!", "Loved it!"],
-                    relatedBooks: ["Book Title 6", "Book Title 7"],
-                    price: 10.00
-                },
-                book2: {
-                    title: "The Great Gatsby",
-                    cover: "book2.jpg",
-                    description: "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.",
-                    author: "F. Scott Fitzgerald",
-                    authorBio: "Francis Scott Key Fitzgerald was an American novelist, essayist, and short story writer. He is best known for his novels depicting the flamboyance and excess of the Jazz Age—a term he popularized in his short story collection Tales of the Jazz Age.",
-                    reviews: "★★★☆☆",
-                    comments: ["Interesting read.", "Good but could be better."],
-                    relatedBooks: ["Book Title 4", "Book Title 5"],
-                    price: 15.00
-                }
-            };
+    function openModal(bookId) {
+        const modal = document.getElementById('modal');
+        const modalDetails = document.getElementById('modal-details');
 
-            const book = bookDetails[bookId];
+        // Placeholder data for book details
+        const bookDetails = {
+            book1: {
+                title: "Harry Potter and the Cursed Child",
+                cover: "book1.jpg",
+                description: "“Harry Potter and the Cursed Child” is about the journey Albus takes while growing up, and the roles he and his best friend, Scorpius (Draco Malfoy's son), play when dark forces, perhaps in league with Voldemort, once again threaten the fate of the planet.",
+                author: "J. K. Rowling",
+                authorBio: "Joanne Rowling CH OBE FRSL, known by her pen name J. K. Rowling, is a British author and philanthropist. She wrote Harry Potter, a seven-volume fantasy series published from 1997 to 2007.",
+                reviews: "★★★★☆",
+                comments: ["Great book!", "Loved it!"],
+                relatedBooks: ["Book Title 6", "Book Title 7"],
+                price: 10.00
+            },
+            book2: {
+                title: "The Great Gatsby",
+                cover: "book2.jpg",
+                description: "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.",
+                author: "F. Scott Fitzgerald",
+                authorBio: "Francis Scott Key Fitzgerald was an American novelist, essayist, and short story writer. He is best known for his novels depicting the flamboyance and excess of the Jazz Age—a term he popularized in his short story collection Tales of the Jazz Age.",
+                reviews: "★★★☆☆",
+                comments: ["Interesting read.", "Good but could be better."],
+                relatedBooks: ["Book Title 4", "Book Title 5"],
+                price: 15.00
+            }
+        };
 
-            modalDetails.innerHTML = `
-                <img src="${book.cover}" alt="${book.title}">
-                <h2>${book.title}</h2>
-                <p><strong>Author:</strong> ${book.author}</p>
-                <p>${book.description}</p>
-                <p><strong>Author Bio:</strong> ${book.authorBio}</p>
-                <p><strong>Reviews:</strong> ${book.reviews}</p>
-                <p><strong>Customer Comments:</strong></p>
-                <ul>
-                    ${book.comments.map(comment => `<li>${comment}</li>`).join('')}
-                </ul>
-                <button class="add-to-cart" onclick="addToCart('${bookId}', '${book.title}', ${book.price}, '${book.cover}')">Add to Cart</button>
-<h3>Related Books</h3>
-<ul>
-${book.relatedBooks.map(title => <li>${title}</li>).join('')}
-</ul>
-`;
+        const book = bookDetails[bookId];
 
-modal.style.display = "block";
+        modalDetails.innerHTML = `
+            <img src="${book.cover}" alt="${book.title}">
+            <h2>${book.title}</h2>
+            <p><strong>Author:</strong> ${book.author}</p>
+            <p>${book.description}</p>
+            <p><strong>Author Bio:</strong> ${book.authorBio}</p>
+            <p><strong>Reviews:</strong> ${book.reviews}</p>
+            <p><strong>Customer Comments:</strong></p>
+            <ul>
+                ${book.comments.map(comment => `<li>${comment}</li>`).join('')}
+            </ul>
+            <button class="add-to-cart" onclick="addToCart('${bookId}', '${book.title}', ${book.price}, '${book.cover}')">Add to Cart</button>
+            <h3>Related Books</h3>
+            <ul>
+                ${book.relatedBooks.map(title => `<li>${title}</li>`).join('')}
+            </ul>
+        `;
+
+        modal.style.display = "block";
     }
 
     function closeModal() {
