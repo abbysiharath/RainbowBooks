@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Authors</title>
-        <link rel="stylesheet" href="style.css">
-        <!-- Add the logo as a favicon -->
-        <link rel="icon" type="image/png" href="logo.png">
-        <!-- Define logo styles -->
-        <style>
-            .logo {
-                display: inline-block;
-                vertical-align: middle;
-                width: 30px; /* Adjust width as needed */
-                height: auto;
-                margin-right: 10px; /* Adjust margin as needed */
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors - Rainbow Books</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add the logo as a favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Define logo styles -->
+    <style>
+        .logo {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px; /* Adjust width as needed */
+            height: auto;
+            margin-right: 10px; /* Adjust margin as needed */
+        }
+    </style>
+</head>
 <body>
     <header>
         <a href="index.html" class="logo">
             <img src="logo.png" alt="Logo" class="logo-icon">
+            Rainbow Books
         </a>
-                <nav>
+        <nav>
             <a href="index.html">Home</a>
             <a href="books.html">Books</a>
             <a href="authors.html">Authors</a>
             <a href="contact.html">Contact</a>
             <a href="cart.html">Cart</a>
-
 
             <div class="search-container">
                 <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
@@ -39,16 +39,22 @@
     </header>
 
     <section>
-        <h1>Authors</h1>
-        <div class="author">
-            <h2>Author 1</h2>
-            <p>Author 1 is a renowned writer known for their captivating storytelling and unique writing style. They have written numerous bestsellers across various genres.</p>
+        <h1>Our Authors</h1>
+        <div class="author-display">
+            <div class="author">
+                <img src="author1.jpg" alt="J. K. Rowling">
+                <h2>J. K. Rowling</h2>
+                <p>J.K. Rowling is a British author and screenwriter best known for her seven-book Harry Potter children's book series. The series has sold more than 500 million copies and was adapted into a blockbuster film franchise.
+                </p>
+            </div>
+            <div class="author">
+                <img src="author2.jpg" alt="F. Scott Fitzgerald ">
+                <h2>F. Scott Fitzgerald </h2>
+                <p>Scott Fitzgerald (born September 24, 1896, St. Paul, Minnesota, U.S.—died December 21, 1940, Hollywood, California) was an American short-story writer and novelist famous for his depictions of the Jazz Age (the 1920s), his most brilliant novel being The Great Gatsby (1925).7 May 2024
+                </p>
+            </div>
+            <!-- Add more author elements as needed -->
         </div>
-        <div class="author">
-            <h2>Author 2</h2>
-            <p>Author 2 has a background in literature and has received several awards for their contribution to the literary world. Their books are loved by readers all over the world.</p>
-        </div>
-        <!-- Add more author elements as needed -->
     </section>
 
     <footer>
@@ -56,7 +62,6 @@
     </footer>
 
     <script>
-        
         function performSearch() {
             const query = document.getElementById('search-bar').value;
             // This is where you would implement your search logic

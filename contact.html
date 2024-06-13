@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authors - Rainbow Books</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Add the logo as a favicon -->
-    <link rel="icon" type="image/png" href="logo.png">
-    <!-- Define logo styles -->
-    <style>
-        .logo {
-            display: inline-block;
-            vertical-align: middle;
-            width: 30px; /* Adjust width as needed */
-            height: auto;
-            margin-right: 10px; /* Adjust margin as needed */
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Us</title>
+        <link rel="stylesheet" href="style.css">
+        <!-- Add the logo as a favicon -->
+        <link rel="icon" type="image/png" href="logo.png">
+        <!-- Define logo styles -->
+        <style>
+            .logo {
+                display: inline-block;
+                vertical-align: middle;
+                width: 30px; /* Adjust width as needed */
+                height: auto;
+                margin-right: 10px; /* Adjust margin as needed */
+            }
+        </style>
+    </head>
 <body>
     <header>
         <a href="index.html" class="logo">
             <img src="logo.png" alt="Logo" class="logo-icon">
-            Rainbow Books
         </a>
-        <nav>
+                <nav>
             <a href="index.html">Home</a>
             <a href="books.html">Books</a>
             <a href="authors.html">Authors</a>
             <a href="contact.html">Contact</a>
             <a href="cart.html">Cart</a>
+
 
             <div class="search-container">
                 <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
@@ -39,37 +39,23 @@
     </header>
 
     <section>
-        <h1>Our Authors</h1>
-        <div class="author-display">
-            <div class="author">
-                <img src="author1.jpg" alt="Author 1">
-                <h2>Author Name 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.</p>
-            </div>
-            <div class="author">
-                <img src="author2.jpg" alt="Author 2">
-                <h2>Author Name 2</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.</p>
-            </div>
-            <div class="author">
-                <img src="author3.jpg" alt="Author 3">
-                <h2>Author Name 3</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.</p>
-            </div>
-            <div class="author">
-                <img src="author4.jpg" alt="Author 4">
-                <h2>Author Name 4</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor.</p>
-            </div>
-            <!-- Add more author elements as needed -->
-        </div>
+        <h1>Contact Us</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
     </section>
 
     <footer>
         <p>&copy; 2024 Rainbow Books</p>
     </footer>
-
     <script>
+        
         function performSearch() {
             const query = document.getElementById('search-bar').value;
             // This is where you would implement your search logic
