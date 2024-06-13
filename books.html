@@ -173,19 +173,62 @@
     }
 
     function addToCart(id, title, price, cover) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingItem = cart.find(item => item.id === id);
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        const existingItemIndex = cart.findIndex(item => item.id === id);
 
-        if (existingItem) {
-            existingItem.quantity += 1;
+        if (existingItemIndex !== -1) {
+            // If item already exists in the cart, increment its quantity
+            cart[existingItemIndex].quantity += 1;
         } else {
+            // Otherwise, add the item to the cart
             cart.push({ id, title, price, cover, quantity: 1 });
         }
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        // Save the updated cart to session storage
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+
         // Display confirmation message
         alert("Added to cart: " + title);
-        // You can also use other methods like modals to display the confirmation
+
+        // Update the cart display
+        displayCart(cart);
+    }
+
+    function removeFromCart(id) {
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        const itemIndex = cart.findIndex(item => item.id === id);
+
+        if (itemIndex !== -1) {
+            // Remove the item from the cart
+            cart.splice(itemIndex, 1);
+
+            // Save the updated cart to session storage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update the cart display
+            displayCart(cart);
+        }
+    }
+
+    function displayCart(cart) {
+        // Display the cart items in the cart page
+        const cartContainer = document.getElementById('cart-items');
+        cartContainer.innerHTML = '';
+
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${item.cover}" alt="${item.title}">
+                <div class="cart-item-details">
+                    <h3>${item.title}</h3>
+                    <p>Price: $${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                    <button onclick="removeFromCart('${item.id}')">Remove</button>
+                </div>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
     }
 </script>
 
