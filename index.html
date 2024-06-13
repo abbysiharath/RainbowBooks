@@ -24,8 +24,9 @@
     <header>
         <a href="index.html" class="logo">
             <img src="logo.png" alt="Logo" class="logo-icon">
+            Rainbow Books
         </a>
-                <nav>
+        <nav>
             <a href="index.html">Home</a>
             <a href="books.html">Books</a>
             <a href="authors.html">Authors</a>
@@ -81,7 +82,7 @@
             // This is where you would implement your search logic
             alert("Search performed for: " + query + ". This is just a placeholder function.");
         }
-    
+
         function openModal(bookId) {
             const modal = document.getElementById('modal');
             const modalDetails = document.getElementById('modal-details');
@@ -96,7 +97,8 @@
                     authorBio: "Joanne Rowling CH OBE FRSL, known by her pen name J. K. Rowling, is a British author and philanthropist. She wrote Harry Potter, a seven-volume fantasy series published from 1997 to 2007.",
                     reviews: "★★★★☆",
                     comments: ["Great book!", "Loved it!"],
-                    relatedBooks: ["Book Title 6", "Book Title 7"]
+                    relatedBooks: ["Book Title 6", "Book Title 7"],
+                    price: 10.00
                 },
                 book2: {
                     title: "The Great Gatsby",
@@ -106,12 +108,13 @@
                     authorBio: "Francis Scott Key Fitzgerald was an American novelist, essayist, and short story writer. He is best known for his novels depicting the flamboyance and excess of the Jazz Age—a term he popularized in his short story collection Tales of the Jazz Age.",
                     reviews: "★★★☆☆",
                     comments: ["Interesting read.", "Good but could be better."],
-                    relatedBooks: ["Book Title 4", "Book Title 5"]
+                    relatedBooks: ["Book Title 4", "Book Title 5"],
+                    price: 15.00
                 }
             };
-    
+
             const book = bookDetails[bookId];
-    
+
             modalDetails.innerHTML = `
                 <img src="${book.cover}" alt="${book.title}">
                 <h2>${book.title}</h2>
@@ -123,21 +126,21 @@
                 <ul>
                     ${book.comments.map(comment => `<li>${comment}</li>`).join('')}
                 </ul>
-                <button class="add-to-cart" onclick="addToCart('${bookId}', '${book.title}', ${book.price}, '${book.cover}')">Add to Cart</button>
+                <button class="add-to-cart" data-id="${bookId}" data-title="${book.title}" data-price="${book.price}" data-cover="${book.cover}">Add to Cart</button>
                 <h3>Related Books</h3>
                 <ul>
                     ${book.relatedBooks.map(title => `<li>${title}</li>`).join('')}
                 </ul>
             `;
-    
+
             modal.style.display = "block";
         }
-    
+
         function closeModal() {
             const modal = document.getElementById('modal');
             modal.style.display = "none";
         }
-    
+
         // Close the modal when clicking outside of it
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
@@ -145,23 +148,35 @@
                 modal.style.display = "none";
             }
         }
-    
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('add-to-cart')) {
+                event.stopPropagation(); // Prevent modal close event
+                const button = event.target;
+                const id = button.getAttribute('data-id');
+                const title = button.getAttribute('data-title');
+                const price = button.getAttribute('data-price');
+                const cover = button.getAttribute('data-cover');
+                addToCart(id, title, price, cover);
+            }
+        });
+
         function addToCart(id, title, price, cover) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             const existingItem = cart.find(item => item.id === id);
-    
+
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
                 cart.push({ id, title, price, cover, quantity: 1 });
             }
-    
+
             localStorage.setItem('cart', JSON.stringify(cart));
             // Display confirmation message
             alert("Added to cart: " + title);
             // You can also use other methods like modals to display the confirmation
         }
     </script>
-    
+
 </body>
 </html>
