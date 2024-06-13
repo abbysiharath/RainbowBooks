@@ -191,20 +191,20 @@
         }
 
         function addToCart(id, title, price, cover) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingItem = cart.find(item => item.id === id);
-
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ id, title, price, cover, quantity: 1 });
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.id === id);
+    
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, title, price, cover, quantity: 1 });
+            }
+    
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Display confirmation message
+            alert("Added to cart: " + title);
+            // You can also use other methods like modals to display the confirmation
         }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-        // Display confirmation message
-        alert("Added to cart: " + title);
-        // You can also use other methods like modals to display the confirmation
-    }
     </script>
 </body>
 </html>
