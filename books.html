@@ -1,124 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Books</title>
-        <link rel="stylesheet" href="style.css">
-        <!-- Add the logo as a favicon -->
-        <link rel="icon" type="image/png" href="logo.png">
-        <!-- Define logo styles -->
-        <style>
-            .logo {
-                display: inline-block;
-                vertical-align: middle;
-                width: 30px; /* Adjust width as needed */
-                height: auto;
-                margin-right: 10px; /* Adjust margin as needed */
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add the logo as a favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Define logo styles -->
+    <style>
+        .logo {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px; /* Adjust width as needed */
+            height: auto;
+            margin-right: 10px; /* Adjust margin as needed */
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
 <body>
     <div class="wrapper">
+        <header>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo" class="logo-icon">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="books.html">Books</a>
+                <a href="authors.html">Authors</a>
+                <a href="contact.html">Contact</a>
+                <a href="cart.html">Cart</a>
 
-    <header>
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Logo" class="logo-icon">
-        </a>
-                <nav>
-            <a href="index.html">Home</a>
-            <a href="books.html">Books</a>
-            <a href="authors.html">Authors</a>
-            <a href="contact.html">Contact</a>
-            <a href="cart.html">Cart</a>
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
+                    <button onclick="performSearch()">Search</button>
+                </div>
+            </nav>
+        </header>
 
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Search by keyword, title, author...">
-                <button onclick="performSearch()">Search</button>
+        <section>
+            <h1>Books</h1>
+            <div class="filter-panel">
+                <h3>Filter Results</h3>
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="price">Price</option>
+                    <option value="popularity">Popularity</option>
+                    <option value="new-releases">New Releases</option>
+                </select>
+                <h4>Genres</h4>
+                <label><input type="checkbox" name="genre" value="fiction"> Fiction</label><br>
+                <label><input type="checkbox" name="genre" value="non-fiction"> Non-Fiction</label><br>
+                <label><input type="checkbox" name="genre" value="mystery"> Mystery</label><br>
+                <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label><br>
+                <label><input type="checkbox" name="genre" value="romance"> Romance</label><br>
+                <label><input type="checkbox" name="genre" value="science-fiction"> Science Fiction</label><br>
+                <h4>Price Range</h4>
+                <label for="min-price">Min Price:</label>
+                <input type="number" id="min-price" name="min-price" placeholder="0"><br>
+                <label for="max-price">Max Price:</label>
+                <input type="number" id="max-price" name="max-price" placeholder="100">
+                <button onclick="applyFilters()">Apply Filters</button>
             </div>
-        </nav>
-    </header>
-
-    <section>
-        <h1>Books</h1>
-        <div class="filter-panel">
-            <h3>Filter Results</h3>
-            <label for="sort">Sort by:</label>
-            <select id="sort">
-                <option value="price">Price</option>
-                <option value="popularity">Popularity</option>
-                <option value="new-releases">New Releases</option>
-            </select>
-            <h4>Genres</h4>
-            <label><input type="checkbox" name="genre" value="fiction"> Fiction</label><br>
-            <label><input type="checkbox" name="genre" value="non-fiction"> Non-Fiction</label><br>
-            <label><input type="checkbox" name="genre" value="mystery"> Mystery</label><br>
-            <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label><br>
-            <label><input type="checkbox" name="genre" value="romance"> Romance</label><br>
-            <label><input type="checkbox" name="genre" value="science-fiction"> Science Fiction</label><br>
-            <h4>Price Range</h4>
-            <label for="min-price">Min Price:</label>
-            <input type="number" id="min-price" name="min-price" placeholder="0"><br>
-            <label for="max-price">Max Price:</label>
-            <input type="number" id="max-price" name="max-price" placeholder="100">
-            <button onclick="applyFilters()">Apply Filters</button>
-        </div>
-        <div class="book-display">
-            <div class="book" onclick="openModal('book1')">
-                <img src="book1.jpg" alt="Harry Potter and the Cursed Child">
-                <p class="book-title">Harry Potter and the Cursed Child</p>
-                <p class="book-author">J. K. Rowling</p>
-                <p class="book-price">$10.00</p>
-                <button class="add-to-cart" onclick="addToCart('book1', 'Harry Potter and the Cursed Child', 10.00, 'book1.jpg')">Add to Cart</button>
+            <div class="book-display">
+                <div class="book" onclick="openModal('book1')">
+                    <img src="book1.jpg" alt="Harry Potter and the Cursed Child">
+                    <p class="book-title">Harry Potter and the Cursed Child</p>
+                    <p class="book-author">J. K. Rowling</p>
+                    <p class="book-price">$10.00</p>
+                    <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('book1', 'Harry Potter and the Cursed Child', 10.00, 'book1.jpg')">Add to Cart</button>
+                </div>
+                <div class="book" onclick="openModal('book2')">
+                    <img src="book2.jpg" alt="The Great Gatsby">
+                    <p class="book-title">The Great Gatsby</p>
+                    <p class="book-author">F. Scott Fitzgerald</p>
+                    <p class="book-price">$15.00</p>
+                    <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('book2', 'The Great Gatsby', 15.00, 'book2.jpg')">Add to Cart</button>
+                </div>
+                <!-- Add more book elements as needed -->
             </div>
-            <div class="book" onclick="openModal('book2')">
-                <img src="book2.jpg" alt="The Great Gatsby">
-                <p class="book-title">The Great Gatsby</p>
-                <p class="book-author">F. Scott Fitzgerald</p>
-                <p class="book-price">$15.00</p>
-                <button class="add-to-cart" onclick="addToCart('book2', 'The Great Gatsby', 15.00, 'book2.jpg')">Add to Cart</button>
-            </div>
-            <!-- Add more book elements as needed -->
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <p>&copy; 2024 Rainbow Books</p>
-    </footer>
-
+        <footer>
+            <p>&copy; 2024 Rainbow Books</p>
+        </footer>
     </div>
 
-    <!-- Cart Section -->
-    <section id="cart" style="display: none;">
-        <h2>Shopping Cart</h2>
-        <table class="cart">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Cart items will be dynamically populated here -->
-            </tbody>
-        </table>
-        <button class="checkout-btn" onclick="location.href='checkout.html'">Proceed to Checkout</button>
-    </section>
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-details"></div>
+        </div>
+    </div>
 
     <script>
         function applyFilters() {
             // This is where you would implement your filtering logic
             alert("Filters applied! This is just a placeholder function.");
         }
-
-        <!-- Modal Structure -->
-        <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modal-details"></div>
-        </div>
-    </div>
 
         function performSearch() {
             const query = document.getElementById('search-bar').value;
@@ -140,7 +151,8 @@
                     authorBio: "Joanne Rowling CH OBE FRSL, known by her pen name J. K. Rowling, is a British author and philanthropist. She wrote Harry Potter, a seven-volume fantasy series published from 1997 to 2007.",
                     reviews: "★★★★☆",
                     comments: ["Great book!", "Loved it!"],
-                    relatedBooks: ["Book Title 6", "Book Title 7"]
+                    relatedBooks: ["Book Title 6", "Book Title 7"],
+                    price: 10.00
                 },
                 book2: {
                     title: "The Great Gatsby",
@@ -150,7 +162,8 @@
                     authorBio: "Francis Scott Key Fitzgerald was an American novelist, essayist, and short story writer. He is best known for his novels depicting the flamboyance and excess of the Jazz Age—a term he popularized in his short story collection Tales of the Jazz Age.",
                     reviews: "★★★☆☆",
                     comments: ["Interesting read.", "Good but could be better."],
-                    relatedBooks: ["Book Title 4", "Book Title 5"]
+                    relatedBooks: ["Book Title 4", "Book Title 5"],
+                    price: 15.00
                 }
             };
 
@@ -168,43 +181,44 @@
                     ${book.comments.map(comment => `<li>${comment}</li>`).join('')}
                 </ul>
                 <button class="add-to-cart" onclick="addToCart('${bookId}', '${book.title}', ${book.price}, '${book.cover}')">Add to Cart</button>
-                <h3>Related Books</h3>
-                <ul>
-                    ${book.relatedBooks.map(title => `<li>${title}</li>`).join('')}
-                </ul>
-            `;
+<h3>Related Books</h3>
+<ul>
+${book.relatedBooks.map(title => <li>${title}</li>).join('')}
+</ul>
+`;
 
-            modal.style.display = "block";
-        }
+modal.style.display = "block";
+    }
 
-        function closeModal() {
-            const modal = document.getElementById('modal');
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = "none";
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal');
+        if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
 
-        // Close the modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('modal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+    function addToCart(id, title, price, cover) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === id);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ id, title, price, cover, quantity: 1 });
         }
 
-        function addToCart(id, title, price, cover) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingItem = cart.find(item => item.id === id);
-    
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, title, price, cover, quantity: 1 });
-            }
-    
-            localStorage.setItem('cart', JSON.stringify(cart));
-            // Display confirmation message
-            alert("Added to cart: " + title);
-            // You can also use other methods like modals to display the confirmation
-        }
-    </script>
+        localStorage.setItem('cart', JSON.stringify(cart));
+        // Display confirmation message
+        alert("Added to cart: " + title);
+        // You can also use other methods like modals to display the confirmation
+    }
+</script>
+
 </body>
 </html>
