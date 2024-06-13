@@ -65,7 +65,7 @@
         }
 
         function loadCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
             const cartItemsContainer = document.querySelector('.cart-items');
             const orderSummary = document.querySelector('.order-summary');
 
@@ -100,20 +100,20 @@
         }
 
         function updateQuantity(id, quantity) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
             const item = cart.find(item => item.id === id);
 
             if (item) {
                 item.quantity = parseInt(quantity);
-                localStorage.setItem('cart', JSON.stringify(cart));
+                sessionStorage.setItem('cart', JSON.stringify(cart));
                 loadCart();
             }
         }
 
         function removeFromCart(id) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
             cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
+            sessionStorage.setItem('cart', JSON.stringify(cart));
             loadCart();
         }
 
